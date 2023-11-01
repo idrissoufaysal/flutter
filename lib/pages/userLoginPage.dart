@@ -5,6 +5,7 @@ import 'package:renteasy/pages/signUp_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:renteasy/widgets/userBottombar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Api/config.dart';
@@ -16,14 +17,14 @@ import '../widgets/main_botton.dart';
 import '../widgets/text_fild.dart';
 import 'home_page.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class UserLoginPAge extends StatefulWidget {
+  const UserLoginPAge({Key? key}) : super(key: key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _UserLoginPAge createState() => _UserLoginPAge();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _UserLoginPAge extends State<UserLoginPAge> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
@@ -60,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
         "password":_passwordController.text
       };
 
-      var response = await http.post(Uri.parse(AdminLogin),
+      var response = await http.post(Uri.parse(Login),
           headers: {"Content-Type":"application/json"},
           body: jsonEncode(LoginBody)
       );
@@ -71,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
           var myToken = jsonResponse['token'];
           prefs.setString('token', myToken);
           showSnackBar(context,'vous etes connecter',Colors.green);
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>BottomBar(token: myToken, index: 0,) ));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>UserBottomBar(token: myToken, indexes: 0,) ));
       }else{
         setState(() {
           print(jsonResponse['status']);
@@ -186,30 +187,7 @@ void showSnackBar(BuildContext context, String message,Color couleur) {
                       txtColor: blackBG,
                     ),
                   const  SpaceVH(height: 20.0),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (builder) =>const SignUpPage()));
-                      },
-                      child: RichText(
-                        text: TextSpan(children: [
-                          TextSpan(
-                            text: 'vous n\'avez pas de compte? ',
-                            style: headline.copyWith(
-                              fontSize: 14.0,
-                            ),
-                          ),
-                          TextSpan(
-                            text: ' S\'inscrire',
-                            style: headlineDot.copyWith(
-                              fontSize: 14.0,
-                            ),
-                          ),
-                        ]),
-                      ),
-                    )
+                    
                   ],
                 ),
               )

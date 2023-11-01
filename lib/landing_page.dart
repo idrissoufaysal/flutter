@@ -30,7 +30,7 @@ class _LandingPageState extends State<LandingPage> {
   }
 
   Future<void> loadHomes() async {
-     homes= await HomeService().getHomes('/homes');
+     homes= await ApiServices().getHomes();
     setState(() {
         isLoading=true;
     });

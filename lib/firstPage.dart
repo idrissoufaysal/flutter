@@ -25,6 +25,8 @@ class HomePageScreen extends StatefulWidget {
 class _HomePageScreenState extends State<HomePageScreen> {
   ///nodeApi
   List<dynamic> _homes = [];
+  bool isLoading = false;
+  String errorMessage = '';
 
   @override
   void initState() {
@@ -33,17 +35,30 @@ class _HomePageScreenState extends State<HomePageScreen> {
   }
 
   Future<void> _loadHomes() async {
-    final homes = await HomeService().getHomes('/homes');
-    setState(() {
-      _homes = homes;
-    });
+      setState(() {
+        isLoading=true;
+      });
+
+    try {
+      final homes = await ApiServices().getHomes();
+      setState(() {
+        _homes = homes;
+        isLoading = false;
+        errorMessage = '';
+      });
+    } catch (e) {
+      setState(() {
+        isLoading=false;
+        errorMessage='uen erreur s\est produite lors de la recuperation des maison';
+      });
+    }
   }
 
   ///nodeApi
 
   final filterArray = [
-    "Tout"
-        "Maison",
+    "Tout",
+    "Maison",
     "villa",
     "Appartement",
     "Chambre",
@@ -68,102 +83,107 @@ class _HomePageScreenState extends State<HomePageScreen> {
     var screenWidth = MediaQuery.of(context).size.width;
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
-        statusBarColor: white,
+        statusBarColor: black,
       ),
     );
+
     return Scaffold(
       
       drawer: Drawer(),
       backgroundColor: Colors.grey[200],
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(
-            left: 15,
-            right: 15,
-            top: 35,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  MenuWidget(
-                    iconImg: Icons.subject,
-                    iconColor: black,
-                    conBackColor: white,
-                    onbtnTap: () {},
-                  ),
-                  MenuWidget(
-                    iconImg: Icons.message_outlined,
-                    iconColor: black,
-                    conBackColor: white,
-                    onbtnTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => ChatScreen()));
-                    },
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Text(
-                "RentEasy",
-                style: GoogleFonts.notoSans(
-                  fontSize: 16,
-                  color: grayText,
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                "Bienvenue",
-                style: GoogleFonts.notoSans(
-                  fontSize: 34,
-                  color: blueButton,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              Divider(
-                color: grayText,
-                thickness: .2,
-              ),
-              Container(
-                height: 50,
-                child: ListView.builder(
-                  shrinkWrap: false,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: filterArray.length,
-                  itemBuilder: (context, index) {
-                    return FilterWidget(
-                      filterTxt: filterArray[index],
-                    );
-                  },
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
+      body:  SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 15,
+                      right: 15,
+                      top: 35,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
 
-              ///Listes des maisons
-              Column(
-                children: List.generate(
-                  _homes.length,
-                  (index) {
-                    //final maison=_homes[index];
-                    return Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: ImageWidget(_homes[index]));
-                  },
+          ///* Les Appbar//////////////////////////////              
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            // MenuWidget(
+                            //   iconImg: Icons.subject,
+                            //   iconColor: black,
+                            //   conBackColor: white,
+                            //   onbtnTap: () {},
+                            // ),
+                            // MenuWidget(
+                            //   iconImg: Icons.message_outlined,
+                            //   iconColor: black,
+                            //   conBackColor: white,
+                            //   onbtnTap: () {
+                            //     Navigator.push(
+                            //         context,
+                            //         MaterialPageRoute(
+                            //             builder: (context) => ChatScreen()));
+                            //   },
+                            // ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Text(
+                          "RentEasy",
+                          style: GoogleFonts.notoSans(
+                            fontSize: 16,
+                            color: grayText,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "Bienvenue",
+                          style: GoogleFonts.notoSans(
+                            fontSize: 34,
+                            color: blueButton,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Divider(
+                          color: grayText,
+                          thickness: .2,
+                        ),
+                        // Container(
+                        //   height: 50,
+                        //   child: ListView.builder(
+                        //     shrinkWrap: false,
+                        //     scrollDirection: Axis.horizontal,
+                        //     itemCount: filterArray.length,
+                        //     itemBuilder: (context, index) {
+                        //       return FilterWidget(
+                        //         filterTxt: filterArray[index],
+                        //       );
+                        //     },
+                        //   ),
+                        // ),
+                        SizedBox(
+                          height: 10,
+                        ),
+
+                        ///Listes des maisons
+                        Column(
+                          children: List.generate(
+                            _homes.length,
+                            (index) {
+                              //final maison=_homes[index];
+                              return Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: ImageWidget(_homes[index]));
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }

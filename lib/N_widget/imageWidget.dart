@@ -4,10 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:renteasy/Api/config.dart';
 import 'package:renteasy/components/colors.dart';
-import '../Api/service_Api.dart';
-import '../models/homeData.dart';
-import '../models/home_models.dart';
+
 import '../pages/detail_home.dart';
+import 'borderIcons.dart';
 
 
 class ImageWidget extends StatefulWidget {
@@ -24,7 +23,7 @@ class ImageWidget extends StatefulWidget {
 class _ImageWidgetState extends State<ImageWidget> {
   // List<dynamic> _homes = [];
   // bool isLoading=false;
-  // String errorMessage='';
+   String errorMessage='';
 
 ///nodeApi
    @override
@@ -53,11 +52,14 @@ String getRealPath(String oldPath) {
       final mesImage= getRealPath(imageUrl);
       print(mesImage);
 
-    final oCcy = new NumberFormat("##,##,###", "en_INR");
+    //final oCcy = new NumberFormat("##,##,###", "en_INR");
     var screenWidth = MediaQuery.of(context).size.width;
 
+
+
+   
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start, 
       children: <Widget>[
         GestureDetector(
           onTap: () {
@@ -125,14 +127,20 @@ String getRealPath(String oldPath) {
               SizedBox(
                 width: 10,
               ),
-              Text(
-                widget.home['typeMaison'].toString(),
-                style: GoogleFonts.notoSans(
-                  fontSize: 15,
-                  color: blueText,
+
+
+              BorderIcon(
+                        height: 40,
+                        width: 100,
+                        bgColor: Colors.blueGrey[700],
+                        child: Text(widget.home['typeMaison'].toString(),
+                        style: TextStyle(
+                          color: white,
+                          
+                  ),
+                 )
                 ),
-              ),
-            ],
+              ],
           ),
         ),
         Padding(
@@ -148,11 +156,15 @@ String getRealPath(String oldPath) {
               Row(
                 children: [
 
+//*Address de la maison //////////////////
                   Text(widget.home['adress'],
                   style: TextStyle(
                      fontSize: 18,
-                     fontWeight: FontWeight.bold
-                  ),),
+                     
+                  ),
+                ),
+
+                  //////*nbre de chambre//////
                   Text(
                         " // " +
                          widget.home['nbrChambre'].toString()+

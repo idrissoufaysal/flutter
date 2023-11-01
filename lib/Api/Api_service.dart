@@ -21,6 +21,7 @@ class ApiService {
     return token ?? '';
   }
 
+
   static T _handleResponse<T>(
       http.Response response, T Function(dynamic) modelFromJson) {
     print("Handling response with status code: ${response.statusCode}");
@@ -52,12 +53,12 @@ class ApiService {
     return response;
   }
 
-// affichage des données de publication
+//* affichage des données de publication
   static Future<http.Response> _indexData(String endpoint) async {
     final authToken = await getAuthToken();
     final headers = {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer $authToken',
+      'Authorization': '$authToken',
     };
     print("Fetching data from $endpoint with headers: $headers");
     final response = await http.get(
@@ -205,6 +206,7 @@ class ApiService {
   static Future<http.Response> deletePublication(int id) {
     return _deleteData('/publications/$id');
   }
+
 
 //-------------- VISITES --------------
   static Future<http.Response> storeVisit(Map<String, dynamic> data) {

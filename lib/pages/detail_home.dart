@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:renteasy/components/colors.dart';
+import 'package:renteasy/pages/chat_screen.dart';
+import 'package:renteasy/pages/paiement.dart';
 
 import '../Api/config.dart';
 import '../N_widget/house_widget.dart';
 import '../N_widget/menu_widget.dart';
 import '../components/text_style.dart';
-import '../models/homeData.dart';
+import '../widgets/main_botton.dart';
 
 class ItemDetailScreen extends StatelessWidget {
   final dynamic home;
@@ -18,17 +21,18 @@ class ItemDetailScreen extends StatelessWidget {
   );
   final houseArray = [
     "1",
-    "4",
-    "2",
     "2",
     "3",
+    "4",
+    "5"
+    
   ];
   final typeArray = [
-    "Square foot",
-    "Bedrooms",
-    "Bedrooms",
     "Garage",
-    "Kitchen",
+    "wc douche",
+    "cuisine",
+    "Garage",
+    "veranda",
   ];
 
   String getRealPath(String oldPath) {
@@ -38,7 +42,7 @@ class ItemDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
-    final oCcy = new NumberFormat("##,##,###", "en_INR");
+    //final oCcy = new NumberFormat("##,##,###", "en_INR");
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         statusBarColor: Colors.blue,
@@ -131,7 +135,7 @@ class ItemDetailScreen extends StatelessWidget {
 
                    ////* le Prix de la maison     
                         Text(
-                          '\FCFA' + "${oCcy.format(home['price'])}",
+                          '\FCFA ' + "${(home['price'])}",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 25,
@@ -170,7 +174,7 @@ class ItemDetailScreen extends StatelessWidget {
                         child: Center(
                           child: Text(
                             "20 hours ago",
-                          style: headline2,
+                          style: headline3,
                                // ),
                           ),
                         ),
@@ -199,11 +203,12 @@ class ItemDetailScreen extends StatelessWidget {
                 child: ListView.builder(
                   shrinkWrap: false,
                   scrollDirection: Axis.horizontal,
-                  itemCount: home['images'].length,
+                  itemCount: typeArray.length,
                   itemBuilder: (context, index) {
                     final imageUrl = getRealPath(home['images'][index]['Homeimages']);
                     return Padding(
                       padding: const EdgeInsets.only(left: 10),
+                      
                       child: HouseWidget(
                         type: typeArray[index],
                         number: houseArray[index].toString(),
@@ -212,6 +217,7 @@ class ItemDetailScreen extends StatelessWidget {
                   },
                 ),
               ),
+
               Container(
                   child: Padding(
                 padding: const EdgeInsets.only(
@@ -230,7 +236,18 @@ class ItemDetailScreen extends StatelessWidget {
                     color: black,
                   ),
                 ),
-              ))
+              )),
+
+ Mainbutton(onTap: () {
+  Navigator.push(context, MaterialPageRoute(builder: (context)=> Paiement()));
+   },
+ text: 'Effectuer un paiement',
+ btnColor: blueButton,
+ ico: Icon(LineAwesomeIcons.facebook_messenger,
+ color: white,),
+ 
+ )
+
             ],
           ),
         ),

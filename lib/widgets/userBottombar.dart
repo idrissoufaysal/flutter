@@ -11,22 +11,22 @@ import '../components/index.dart';
 
 
 
-class BottomBar extends StatefulWidget {
-  final int index;
-  BottomBar({Key? key, required this.index,required token}) : super(key: key);
+class UserBottomBar extends StatefulWidget {
+  final int indexes;
+  UserBottomBar({Key? key, required this.indexes,required token}) : super(key: key);
   
   
    @override
-  State<BottomBar> createState() => _BottomBarState();
+  State<UserBottomBar> createState() => _UserBottomBarState();
 }
 
-class _BottomBarState extends State<BottomBar> {
+class _UserBottomBarState extends State<UserBottomBar> {
   
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[index],
+      body: screense[indexes],
       bottomNavigationBar: Container(
         //couleur du backgroundColors
         color:blackBG,
@@ -40,23 +40,15 @@ class _BottomBarState extends State<BottomBar> {
             tabBorderRadius: 25,
             tabBackgroundColor: blueButton,
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-            selectedIndex: index,
+            selectedIndex: indexes,
             tabs: [
-              GButton(
-                icon: LineAwesomeIcons.home,
-                text: 'Home',
-                iconSize: 30,
-                onPressed: () {
-                  setState(() => index = 0);
-                },
-              ),
-
+              
               GButton(
                 icon: Icons.home,
                 text: 'Propriete',
                 iconSize: 30,
                 onPressed: () {
-                  setState(() => index = 1);
+                  setState(() => indexes = 0);
                 },
               ),
              
@@ -66,7 +58,7 @@ class _BottomBarState extends State<BottomBar> {
                 iconSize: 30,
                 onPressed: () {
 
-                  setState(() => index = 2);
+                  setState(() => indexes = 1);
 
                 },
              )
@@ -76,7 +68,7 @@ class _BottomBarState extends State<BottomBar> {
                 text: 'Profile',
                 iconSize: 30,
                 onPressed: () {
-                  setState(() => index = 3);
+                  setState(() => indexes = 2);
                 },
              )
             ],

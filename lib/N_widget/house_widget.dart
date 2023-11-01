@@ -11,41 +11,44 @@ class HouseWidget extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Container(
-          height: 70,
-          width: 70,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(
-              18.0,
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        
+        children: <Widget>[
+          Container(
+            height: 70,
+            width: 70,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(
+                18.0,
+              ),
+              color: Colors.blueGrey,
+              border: Border.all(color: whiteText),
             ),
-            color: Colors.blueGrey,
-            border: Border.all(color: whiteText),
-          ),
-          child: Center(
-            child: Text(
-              number,
-              style: GoogleFonts.notoSans(
-                fontSize: 20,
-                color: white,
-                fontWeight: FontWeight.w600,
+            child: Center(
+              child: Text(
+                number,
+                style: GoogleFonts.notoSans(
+                  fontSize: 20,
+                  color: white,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Text(
-          type,
-          style: GoogleFonts.notoSans(
-            fontSize: 16,
-            color: blueButton,
+          SizedBox(
+            height: 10,
           ),
-        ),
-      ],
+          Text(
+            type,
+            style: GoogleFonts.notoSans(
+              fontSize: 16,
+              color: blueButton,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

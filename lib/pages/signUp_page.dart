@@ -30,7 +30,7 @@ class _SignUpPageState extends State<SignUpPage> {
   bool _isNotValidate = false;
   //fonction de register
   void _register() async {
-    print(_nameController);
+    print(_nameController);  
     if (_nameController.text.isNotEmpty &&
         _prenomController.text.isNotEmpty &&
         _emailController.text.isNotEmpty &&
@@ -43,10 +43,9 @@ class _SignUpPageState extends State<SignUpPage> {
         "email": _emailController.text,
         "password": _passwordController.text,
         "telephone": _phoneContoller.text
+        };
 
-      };
-
-      var response = await http.post(Uri.parse(Registration),
+      var response = await http.post(Uri.parse(AdminRegistration),
           headers: {"Content-Type": "application/json"},
           body: jsonEncode(registerBody));
 

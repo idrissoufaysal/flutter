@@ -7,7 +7,7 @@ import '../components/text_style.dart';
 
 Widget textFild({
   
-  required String hintTxt,
+  required String hintTxt, 
    String ? image ,
    int ? ligne,
   required TextEditingController controller,

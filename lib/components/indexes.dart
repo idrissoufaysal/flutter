@@ -16,11 +16,9 @@ import '../pages/profilePage.dart';
 import '../pages/userAdd.dart';
 import '../widgets/news_card.dart';
 
-int index = 0;
-final screens = [
-Acceuil(),
+int indexes = 0;
+final screense = [
 
-  //LandingPage(),
   HomePageScreen(token: null),
 
   ChatScreen(),

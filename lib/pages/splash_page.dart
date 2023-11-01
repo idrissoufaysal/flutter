@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:renteasy/pages/userLoginPage.dart';
 
 import '../components/colors.dart';
 import '../components/space.dart';
 import '../components/text_style.dart';
 import '../widgets/main_botton.dart';
 import 'login_page.dart';
-
-
-
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -19,8 +17,8 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
-  final height = MediaQuery.of(context).size.height;
-  final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -47,38 +45,49 @@ class _SplashState extends State<Splash> {
                   end: Alignment.topCenter,
                 ),
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  RichText(
-                    text: TextSpan(children: [
-                      TextSpan(
-                        text: 'RentEasy',
-                        style: headline,
-                      ),
-                      TextSpan(
-                        text: '.',
-                        style: headlineDot,
-                      ),
-                    ]),
-                  ),
-                  SpaceVH(height: 20.0),
-                  Text(
-                    'Avec nous plus de souci avec le gestion des location',
-                    textAlign: TextAlign.center,
-                    style: headline2,
-                  ),
-                 const   SpaceVH(height: 40.0),
-                  Mainbutton(
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (builder) => LoginPage()));
-                    },
-                    btnColor:blueButton,
-                    text: 'Commencer',
-                  ),
-                  SpaceVH(height: 30,)
-                ],
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    RichText(
+                      text: TextSpan(children: [
+                        TextSpan(
+                          text: 'RentEasy',
+                          style: headline,
+                        ),
+                        TextSpan(
+                          text: '.',
+                          style: headlineDot,
+                        ),
+                      ]),
+                    ),
+                    SpaceVH(height: 20.0),
+                    
+                    const SpaceVH(height: 40.0),
+                    Text('Continuer en tant :',style:headline ,),
+                    const SpaceVH(height: 40.0),
+                    Mainbutton(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (builder) => UserLoginPAge()));
+                      },
+                      btnColor: blueButton,
+                      text: 'Utilisateur',
+                    ),
+                    SpaceVH(height: 20.0),
+                    Mainbutton(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (builder) => LoginPage()));
+                      },
+                      btnColor: blueButton,
+                      text: 'Proprietaire',
+                    ),
+                    SpaceVH(
+                      height: 5,
+                    )
+                  ],
+                ),
               ),
             ),
           )

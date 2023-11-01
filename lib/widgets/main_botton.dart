@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:renteasy/components/colors.dart';
+import 'package:renteasy/components/space.dart';
 
 import '../components/text_style.dart';
 
@@ -10,6 +12,7 @@ class Mainbutton extends StatelessWidget {
   final Color? txtColor;
   final Icon? ico;
   final Color btnColor;
+  final TextEditingController? controller;
   const Mainbutton({
     Key? key,
     required this.onTap,
@@ -17,7 +20,7 @@ class Mainbutton extends StatelessWidget {
     this.image,
     this.txtColor,
     this.ico,
-    required this.btnColor,
+    required this.btnColor, this.controller,
   }) : super(key: key);
 
   @override
@@ -46,9 +49,13 @@ class Mainbutton extends StatelessWidget {
               style: txtColor != null
                   ? headline2.copyWith(color: txtColor)
                   : headline2,
-            )
+            ),
+            SpaceVH(width: 10,),
+            
           ],
+          
         ),
+        
       ),
     );
   }
