@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renteasy/firstPage.dart';
 import 'package:renteasy/pages/signUp_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:renteasy/widgets/userBottombar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Api/config.dart';
@@ -29,14 +31,14 @@ class _LoginPageState extends State<LoginPage> {
 
   bool _isNotValidate = false;
   late SharedPreferences prefs;
-  String error='';
+  String error = '';
 
   ////////////////////////////////*
-  bool isAPIcallProcess=false;
-  bool hidePassword=true;
+  bool isAPIcallProcess = false;
+  bool hidePassword = true;
   String? email;
   String? password;
-  GlobalKey<FormState> globalKey= GlobalKey<FormState>();
+  GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   //////////////////////////////*
 
   @override
@@ -46,45 +48,54 @@ class _LoginPageState extends State<LoginPage> {
   }
 
 //////////////////////////////////?
-  void initSharedPref() async{
+  void initSharedPref() async {
     prefs = await SharedPreferences.getInstance();
   }
 //////////////////////////////////?
 
 //*Fonction de login
-  void _login() async{
-    if(_emailController.text.isNotEmpty && _passwordController.text.isNotEmpty){
-
+  void _login() async {
+    if (_emailController.text.isNotEmpty &&
+        _passwordController.text.isNotEmpty) {
       var LoginBody = {
-        "email":_emailController.text,
-        "password":_passwordController.text
+        "email": _emailController.text,
+        "password": _passwordController.text
       };
 
-      var response = await http.post(Uri.parse(AdminLogin),
-          headers: {"Content-Type":"application/json"},
-          body: jsonEncode(LoginBody)
-      );
+      try {
+        var response = await http.post(Uri.parse(Login),
+          headers: {"Content-Type": "application/json"},
+          body: jsonEncode(LoginBody));
 
       var jsonResponse = jsonDecode(response.body);
-      
-      if(jsonResponse['status']){
-          var myToken = jsonResponse['token'];
-          prefs.setString('token', myToken);
-          showSnackBar(context,'vous etes connecter',Colors.green);
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>BottomBar(token: myToken, index: 0,) ));
-      }else{
+      print(jsonResponse);
+      if (response.statusCode == 200) {
+        var myToken = jsonResponse['token'];
+        prefs.setString('token', myToken);
+        showSnackBar(context, 'vous etes connecter', Colors.green);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => BottomBar(
+              token: myToken,
+              index: 0,
+            ),
+          ),
+        );
+      } else {
         setState(() {
           print(jsonResponse['status']);
-        error=jsonResponse['error'];
+          error = jsonResponse['message'];
         });
         print(error);
-        showSnackBar(context,error,Colors.red);
-      };
-  }  
-
- }
-
-   
+        showSnackBar(context, error, Colors.red);
+      }
+      } catch (e) {
+        print(e);
+      }
+      ;
+    }
+  }
 
   //  @override
   // Widget build(BuildContext context) {
@@ -96,70 +107,67 @@ class _LoginPageState extends State<LoginPage> {
   //   ));
   // }
 
-
 // Fonction pour afficher une SnackBar
-void showSnackBar(BuildContext context, String message,Color couleur) {
-  final scaffoldMessenger = ScaffoldMessenger.of(context);
-  scaffoldMessenger.showSnackBar(
-    SnackBar(
-      backgroundColor: couleur,
-      content: Text(message),
-      duration: Duration(seconds: 2),
-       // Durée pendant laquelle la SnackBar est affichée
-    ),
-  );
-}
-
+  void showSnackBar(BuildContext context, String message, Color couleur) {
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    scaffoldMessenger.showSnackBar(
+      SnackBar(
+        backgroundColor: couleur,
+        content: Text(message),
+        duration: Duration(seconds: 2),
+        // Durée pendant laquelle la SnackBar est affichée
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: blackBG,
       body: Padding(
-        padding:const EdgeInsets.only(top: 50.0),
+        padding: const EdgeInsets.only(top: 50.0),
         child: SingleChildScrollView(
           child: Column(
             children: [
-             const SpaceVH(height: 50.0),
-             const Text(
+              const SpaceVH(height: 50.0),
+              const Text(
                 'Bienvenu !',
                 style: headline1,
               ),
-           const   SpaceVH(height: 10.0),
-            const  Text(
+              const SpaceVH(height: 10.0),
+              const Text(
                 'Connecter-vous a votre compte',
                 style: headline3,
               ),
-            const  SpaceVH(height: 60.0),
+              const SpaceVH(height: 60.0),
               textFild(
-                controller: _emailController,
-                image: 'user.svg',
-                hintTxt: 'adress email',
-                isNotValidate:_isNotValidate
-
-              ),
+                  controller: _emailController,
+                  image: 'user.svg',
+                  hintTxt: 'adress email',
+                  isNotValidate: _isNotValidate,
+                  keyBordType: TextInputType.emailAddress),
               textFild(
-                controller: _passwordController,
-                image: 'hide.svg',
-                isObs: true,
-                hintTxt: 'mot de pass',
-                isNotValidate:_isNotValidate
-              ),
-            const  SpaceVH(height: 10.0),
+                  controller: _passwordController,
+                  image: 'hide.svg',
+                  isObs: true,
+                  hintTxt: 'mot de pass',
+                  isNotValidate: _isNotValidate,
+                  keyBordType: TextInputType.visiblePassword),
+              const SpaceVH(height: 10.0),
               Align(
                 alignment: Alignment.centerRight,
                 child: Padding(
-                  padding:const EdgeInsets.only(right: 20.0),
+                  padding: const EdgeInsets.only(right: 20.0),
                   child: TextButton(
                     onPressed: () {},
-                    child:const Text(
+                    child: const Text(
                       'Mot de pass oublier ?',
                       style: headline3,
                     ),
                   ),
                 ),
               ),
-            const  SpaceVH(height: 60.0),
+              const SpaceVH(height: 60.0),
 
               //Boutton de Login
               Align(
@@ -167,31 +175,31 @@ void showSnackBar(BuildContext context, String message,Color couleur) {
                 child: Column(
                   children: [
                     Mainbutton(
-                      onTap:(){
-                      //? showSnackBar(context,error):null;
+                      onTap: () {
+                        //? showSnackBar(context,error):null;
                         _login();
+                        print('user login');
                       },
                       text: 'Se connecter',
                       btnColor: blueButton,
-                      
                     ),
-                 const   SpaceVH(height: 20.0),
+                    const SpaceVH(height: 20.0),
 
-                  //Connection avec google
+                    //Connection avec google
                     Mainbutton(
-                      onTap: (){},
+                      onTap: () {},
                       text: 'contunier avec google',
                       image: 'google.png',
                       btnColor: white,
                       txtColor: blackBG,
                     ),
-                  const  SpaceVH(height: 20.0),
+                    const SpaceVH(height: 20.0),
                     TextButton(
                       onPressed: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (builder) =>const SignUpPage()));
+                                builder: (builder) => const SignUpPage()));
                       },
                       child: RichText(
                         text: TextSpan(children: [
@@ -220,5 +228,3 @@ void showSnackBar(BuildContext context, String message,Color couleur) {
     );
   }
 }
-  
-

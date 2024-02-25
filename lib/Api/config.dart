@@ -1,4 +1,4 @@
-final Api_url = 'http://192.168.47.183:4000';
+final Api_url = 'http://10.10.10.55:4000';
 final Registration = Api_url + "/auth/register";
 final Login = Api_url + '/auth/login';
 final plainte=Api_url+ '/users/:id/palintes';

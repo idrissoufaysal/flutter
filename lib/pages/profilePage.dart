@@ -38,7 +38,8 @@ class _ProfilePageState extends State<ProfilePage> {
     await ApiServices.logout(); // Appel de la fonction de déconnexion de l'API Service
     
     Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-    Splash()), (Route<dynamic> route) => false);
+    LoginPage()), (Route<dynamic> route) => false);
+    
   } catch (e) {
     print('Erreur lors de la déconnexion: $e');
   }

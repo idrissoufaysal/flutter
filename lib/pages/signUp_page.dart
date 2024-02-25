@@ -54,8 +54,9 @@ class _SignUpPageState extends State<SignUpPage> {
       print(jsonResponse['status']);
 
       if (jsonResponse['status']) {
+        
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => LoginPage()));
+            context, MaterialPageRoute(builder: (context) => LoginPage(),),);
       } else {
         print("SomeThing Went Wrong");
       }

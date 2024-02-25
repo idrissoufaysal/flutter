@@ -13,7 +13,10 @@ import '../components/index.dart';
 
 class BottomBar extends StatefulWidget {
   final int index;
-  BottomBar({Key? key, required this.index,required token}) : super(key: key);
+  final token;
+
+  const BottomBar({super.key, required this.index,required this.token});
+  
   
   
    @override

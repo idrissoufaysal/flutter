@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 import 'package:renteasy/components/colors.dart';
 import 'package:renteasy/pages/chat_screen.dart';
@@ -15,7 +16,7 @@ import 'models/homeData.dart';
 import 'models/home_models.dart';
 
 class HomePageScreen extends StatefulWidget {
-  final token;
+  final String? token;
   const HomePageScreen({@required this.token, Key? key}) : super(key: key);
 
   @override
@@ -32,6 +33,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
   void initState() {
     super.initState();
     _loadHomes();
+    Map<String,dynamic> jwtDecodedToken = JwtDecoder.decode(widget.token!);
+    userId = jwtDecodedToken['id'];
   }
 
   Future<void> _loadHomes() async {
@@ -66,17 +69,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
 
   late String userId;
 
-  // List? items;
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   Map<String,dynamic> jwtDecodedToken = JwtDecoder.decode(widget.token);
+  List? items;
 
-  //   //userId = jwtDecodedToken['id'];
-
-  // }
-/////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
   @override
   Widget build(BuildContext context) {

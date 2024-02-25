@@ -64,17 +64,9 @@ class _SplashState extends State<Splash> {
                     SpaceVH(height: 20.0),
                     
                     const SpaceVH(height: 40.0),
-                    Text('Continuer en tant :',style:headline ,),
+                    Text("bienvenue avec nous vous n'avez plus de souci avec la location de vos maison",style:headline1 ,),
                     const SpaceVH(height: 40.0),
-                    Mainbutton(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (builder) => UserLoginPAge()));
-                      },
-                      btnColor: blueButton,
-                      text: 'Utilisateur',
-                    ),
-                    SpaceVH(height: 20.0),
+                    
                     Mainbutton(
                       onTap: () {
                         Navigator.push(context,
