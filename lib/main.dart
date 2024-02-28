@@ -3,9 +3,9 @@ import 'package:renteasy/components/colors.dart';
 
 import 'package:renteasy/pages/splash_page.dart';
 import 'package:renteasy/widgets/bottom_bar.dart';
-import 'package:renteasy/widgets/userBottombar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,12 +37,12 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: blackBG,
         ),
         home: (token != null)
-            ? UserBottomBar(
-                indexes: 0,
+            ? BottomBar(
+                index: 0,
                 token: token,
               )
             : Splash()
-
+// && JwtDecoder.isExpired(token!) == false
         //home:
         //Plaintes()
         //SignUpPage()

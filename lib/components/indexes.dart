@@ -19,7 +19,7 @@ import '../widgets/news_card.dart';
 int indexes = 0;
 final screense = [
 
-  HomePageScreen(token: null),
+  HomePageScreen(token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzA4OTg1NzU0fQ.BDT-9hSe-gebwlWgBMaoZxeO8MIakXFAl3jVEjW_5PE'),
 
   ChatScreen(),
   

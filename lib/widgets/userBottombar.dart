@@ -26,7 +26,7 @@ class _UserBottomBarState extends State<UserBottomBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screense[indexes],
+      body: screense[widget.indexes],
       bottomNavigationBar: Container(
         //couleur du backgroundColors
         color:blackBG,

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:renteasy/Api/config.dart';
 import 'package:renteasy/components/colors.dart';
 import 'package:renteasy/components/text_style.dart';
@@ -114,18 +115,20 @@ void refreshConversationsAndMessages() async {
 
                             ////*Le bouton d'envoie *///////////////////////////
                           
-                               Container(
-                                margin: EdgeInsets.only(),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.green),
-                                child: IconButton(
-                                    onPressed: () {
-                                      sendMessage(msgInputController.text);
-                                      msgInputController.text = "";
-                                    },
-                                    icon: Icon(Icons.send_rounded)),
-                              ),
+                               Expanded(
+                                 child: Container(
+                                  margin: EdgeInsets.only(),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.green),
+                                  child: IconButton(
+                                      onPressed: () {
+                                        sendMessage(msgInputController.text);
+                                        msgInputController.text = "";
+                                      },
+                                      icon: Icon(Icons.send_rounded)),
+                                                               ),
+                               ),
                             
 
                             /// * */////////////////////////////////////////

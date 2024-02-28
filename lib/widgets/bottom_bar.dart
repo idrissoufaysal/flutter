@@ -30,6 +30,7 @@ class _BottomBarState extends State<BottomBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: screens[index],
+
       bottomNavigationBar: Container(
         //couleur du backgroundColors
         color:blackBG,
@@ -43,7 +44,7 @@ class _BottomBarState extends State<BottomBar> {
             tabBorderRadius: 25,
             tabBackgroundColor: blueButton,
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-            selectedIndex: index,
+            selectedIndex:index,
             tabs: [
               GButton(
                 icon: LineAwesomeIcons.home,
@@ -51,6 +52,7 @@ class _BottomBarState extends State<BottomBar> {
                 iconSize: 30,
                 onPressed: () {
                   setState(() => index = 0);
+                  print(index);
                 },
               ),
 
@@ -60,6 +62,7 @@ class _BottomBarState extends State<BottomBar> {
                 iconSize: 30,
                 onPressed: () {
                   setState(() => index = 1);
+                  print(index);
                 },
               ),
              
@@ -70,7 +73,7 @@ class _BottomBarState extends State<BottomBar> {
                 onPressed: () {
 
                   setState(() => index = 2);
-
+                  print(index);
                 },
              )
 ,
@@ -80,6 +83,7 @@ class _BottomBarState extends State<BottomBar> {
                 iconSize: 30,
                 onPressed: () {
                   setState(() => index = 3);
+                  print(index);
                 },
              )
             ],

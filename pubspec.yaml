@@ -43,6 +43,7 @@ dependencies:
   user_social_profile: ^1.0.3  
   animated_text_field: ^0.0.1+2
   image_picker: ^1.0.2
+  provider: ^6.1.1
 
 dev_dependencies:
   flutter_test:

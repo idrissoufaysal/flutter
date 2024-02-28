@@ -17,7 +17,7 @@ import 'models/home_models.dart';
 
 class HomePageScreen extends StatefulWidget {
   final String? token;
-  const HomePageScreen({@required this.token, Key? key}) : super(key: key);
+  const HomePageScreen({ this.token, Key? key}) : super(key: key);
 
   @override
   State<HomePageScreen> createState() => _HomePageScreenState();
@@ -52,7 +52,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
     } catch (e) {
       setState(() {
         isLoading=false;
-        errorMessage='uen erreur s\est produite lors de la recuperation des maison';
+        errorMessage='une erreur s\est produite lors de la recuperation des maison';
       });
     }
   }
@@ -101,23 +101,23 @@ class _HomePageScreenState extends State<HomePageScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            // MenuWidget(
-                            //   iconImg: Icons.subject,
-                            //   iconColor: black,
-                            //   conBackColor: white,
-                            //   onbtnTap: () {},
-                            // ),
-                            // MenuWidget(
-                            //   iconImg: Icons.message_outlined,
-                            //   iconColor: black,
-                            //   conBackColor: white,
-                            //   onbtnTap: () {
-                            //     Navigator.push(
-                            //         context,
-                            //         MaterialPageRoute(
-                            //             builder: (context) => ChatScreen()));
-                            //   },
-                            // ),
+                            MenuWidget(
+                              iconImg: Icons.subject,
+                              iconColor: black,
+                              conBackColor: white,
+                              onbtnTap: () {},
+                            ),
+                            MenuWidget(
+                              iconImg: Icons.message_outlined,
+                              iconColor: black,
+                              conBackColor: white,
+                              onbtnTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ChatScreen()));
+                              },
+                            ),
                           ],
                         ),
                         SizedBox(
@@ -145,19 +145,19 @@ class _HomePageScreenState extends State<HomePageScreen> {
                           color: grayText,
                           thickness: .2,
                         ),
-                        // Container(
-                        //   height: 50,
-                        //   child: ListView.builder(
-                        //     shrinkWrap: false,
-                        //     scrollDirection: Axis.horizontal,
-                        //     itemCount: filterArray.length,
-                        //     itemBuilder: (context, index) {
-                        //       return FilterWidget(
-                        //         filterTxt: filterArray[index],
-                        //       );
-                        //     },
-                        //   ),
-                        // ),
+                        Container(
+                          height: 50,
+                          child: ListView.builder(
+                            shrinkWrap: false,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: filterArray.length,
+                            itemBuilder: (context, index) {
+                              return FilterWidget(
+                                filterTxt: filterArray[index],
+                              );
+                            },
+                          ),
+                        ),
                         SizedBox(
                           height: 10,
                         ),

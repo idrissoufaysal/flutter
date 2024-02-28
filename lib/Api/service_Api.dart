@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:renteasy/Api/config.dart';
+import 'package:renteasy/models/home_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/homeData.dart';
@@ -52,7 +53,6 @@ Future<dynamic> saveProperty(
 
 ///*Recuperation du token du utilisateur
 
-
   Future<dynamic> getHomes() async {
     final authToken = await getAuthToken();
     final headers = {
@@ -60,16 +60,17 @@ Future<dynamic> saveProperty(
       'Authorization': 'Bearer $authToken',
     };
     print("Fetching data from  with headers: $headers");
-    var client = http.Client();
     var uri = Uri.parse(AllHome);
     try {
-      var response = await client.get(uri,
+       var response = await http.get(uri,
       headers: headers);
-      //var json = jsonDecode(response.body)['data'];
-
+      print(response.body);
+      print('la reponse 1 ');
       if (response.statusCode == 200) {
-        var json = jsonDecode(response.body)['data'];
+        var json = Homes.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+        print('tous les maison');
         print(json);
+        print("la reponse 2 \R2");
               return json;
               
         } else {
@@ -85,7 +86,6 @@ Future<dynamic> saveProperty(
 
   //* Recuperation Token d'un user
   static Future<String?> getAuthToken() async {
-    print("Fetching auth token from SharedPreferences...");
     SharedPreferences pref = await SharedPreferences.getInstance();
     String? token = pref.getString('token');
     print("Auth token: $token");
