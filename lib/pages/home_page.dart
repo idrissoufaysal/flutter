@@ -3,7 +3,7 @@ import 'package:renteasy/components/colors.dart';
 import 'package:renteasy/components/space.dart';
 import 'package:renteasy/components/text_style.dart';
 import 'package:renteasy/pages/login_page.dart';
-import 'package:renteasy/pages/message.dart';
+import 'package:renteasy/pages/profilePage.dart';
 import 'package:renteasy/pages/signUp_page.dart';
 import 'package:renteasy/pages/splash_page.dart';
 import 'package:renteasy/widgets/app_bar.dart';
@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
 
            IconButton(onPressed: (){
             Navigator.push(context,
-            MaterialPageRoute(builder: (builder) => Message()));
+            MaterialPageRoute(builder: (builder) => ProfilePage()));
            },
            icon: Icon(Icons.message)),
            SpaceVH(width: 15,),

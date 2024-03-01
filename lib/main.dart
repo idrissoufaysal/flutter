@@ -2,17 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:renteasy/components/colors.dart';
 
 import 'package:renteasy/pages/splash_page.dart';
+import 'package:renteasy/provider/authProvider/auth_provider.dart';
 import 'package:renteasy/widgets/bottom_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   runApp(
-    MyApp(
+    MultiProvider(providers: [
+      ChangeNotifierProvider(create: (_)=> AuthentificationProvider())
+    ],
+   child: MyApp(
       token: prefs.getString('token'),
+    )
     ),
   );
   //runApp(const MyApp());
@@ -21,7 +25,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   final String? token;
   const MyApp({
-    required this.token,
+     this.token,
     Key? key,
   }) : super(key: key);
 
@@ -45,7 +49,7 @@ class MyApp extends StatelessWidget {
 // && JwtDecoder.isExpired(token!) == false
         //home:
         //Plaintes()
-        //SignUpPage()
+        //SignUpPage()nn
         //BottomBar(index: 0),
         //Message()
         );

@@ -53,7 +53,7 @@ Future<dynamic> saveProperty(
 
 ///*Recuperation du token du utilisateur
 
-  Future<dynamic> getHomes() async {
+  Future<Homes> getHomes() async {
     final authToken = await getAuthToken();
     final headers = {
       'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ Future<dynamic> saveProperty(
       print(response.body);
       print('la reponse 1 ');
       if (response.statusCode == 200) {
-        var json = Homes.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+        var json =Homes.fromJson( jsonDecode(response.body) as Map<String, dynamic> );
         print('tous les maison');
         print(json);
         print("la reponse 2 \R2");

@@ -11,7 +11,7 @@ import 'package:renteasy/components/colors.dart';
 import 'package:renteasy/components/space.dart';
 import 'package:renteasy/components/text_style.dart';
 import 'package:renteasy/models/home_model.dart';
-import 'package:renteasy/pages/chat_screen.dart';
+import 'package:renteasy/pages/profilePage.dart';
 import 'package:renteasy/pages/userAdd.dart';
 import 'package:renteasy/widgets/main_botton.dart';
 
@@ -25,7 +25,7 @@ class Acceuil extends StatefulWidget {
 }
 
 class _AcceuilState extends State<Acceuil> {
-List<dynamic> _homes = [];
+List<Homes> _homes = [];
   bool isLoading = false;
   String errorMessage = '';
 
@@ -44,9 +44,9 @@ Future<void> _loadHomes() async {
       });
 
     try {
-      final List<Homes> homes = await ApiServices().getHomes();
+      final List<Homes> homes = (await ApiServices().getHomes()) as List<Homes>;
       setState(() {
-       // _homes = homes;
+        _homes = homes;
         isLoading = false;
         errorMessage = '';
       });
@@ -113,7 +113,7 @@ Future<void> _loadHomes() async {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => ChatScreen()));
+                                        builder: (context) => ProfilePage()));
                               },
                             ),
                           ],

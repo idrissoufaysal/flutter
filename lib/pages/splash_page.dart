@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:renteasy/pages/userLoginPage.dart';
 
 import '../components/colors.dart';
 import '../components/space.dart';
@@ -64,7 +63,7 @@ class _SplashState extends State<Splash> {
                     SpaceVH(height: 20.0),
                     
                     const SpaceVH(height: 40.0),
-                    Text("bienvenue avec nous vous n'avez plus de souci avec la location de vos maison",style:headline1 ,),
+                    Text("bienvenue avec nous vous n'avez plus de souci avec la location de vos maison",style:headline1 ,textAlign: TextAlign.justify,),
                     const SpaceVH(height: 40.0),
                     
                     Mainbutton(
@@ -73,7 +72,7 @@ class _SplashState extends State<Splash> {
                             MaterialPageRoute(builder: (builder) => LoginPage()));
                       },
                       btnColor: blueButton,
-                      text: 'Proprietaire',
+                      text: 'Continuer',
                     ),
                     SpaceVH(
                       height: 5,

@@ -8,6 +8,7 @@ import 'package:renteasy/components/text_style.dart';
 import 'package:renteasy/pages/login_page.dart';
 import 'package:renteasy/pages/profileMenu.dart';
 import 'package:renteasy/pages/splash_page.dart';
+import 'package:renteasy/utilises/showMessage.dart';
 import 'package:user_social_profile/user_social_profile.dart';
 
 import '../Api/Api_service.dart';
@@ -39,6 +40,7 @@ class _ProfilePageState extends State<ProfilePage> {
     
     Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
     LoginPage()), (Route<dynamic> route) => false);
+    showSnackBar(context, "vous etes deconnecter",null);
     
   } catch (e) {
     print('Erreur lors de la déconnexion: $e');
