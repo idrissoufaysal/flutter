@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:renteasy/components/colors.dart';
+import 'package:renteasy/utility/colors.dart';
 
-import '../components/index.dart';
+import '../utility/index.dart';
 
 
 
@@ -55,23 +55,14 @@ class _BottomBarState extends State<BottomBar> {
                 },
               ),
 
-              GButton(
-                icon: Icons.home,
-                text: 'Propriete',
-                iconSize: 30,
-                onPressed: () {
-                  setState(() => index = 1);
-                  print(index);
-                },
-              ),
-             
+              
               GButton(
                 icon: LineAwesomeIcons.user_circle,
                 text: 'Profile',
                 iconSize: 30,
                 onPressed: () {
 
-                  setState(() => index = 2);
+                  setState(() => index = 1);
                   print(index);
                 },
              )
@@ -81,7 +72,7 @@ class _BottomBarState extends State<BottomBar> {
                 text: 'Profile',
                 iconSize: 30,
                 onPressed: () {
-                  setState(() => index = 3);
+                  setState(() => index = 2);
                   print(index);
                 },
              )

@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:renteasy/pages/home_page.dart';
 import 'package:renteasy/pages/login_page.dart';
 import 'dart:convert';
-import 'dart:math';
-
 import '../Api/config.dart';
-import '../components/colors.dart';
+import '../utility/colors.dart';
 import '../components/space.dart';
 import '../components/text_style.dart';
 import '../widgets/main_botton.dart';

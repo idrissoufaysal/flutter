@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:renteasy/components/colors.dart';
+import 'package:renteasy/utility/colors.dart';
 
 class HouseWidget extends StatelessWidget {
   final String number;

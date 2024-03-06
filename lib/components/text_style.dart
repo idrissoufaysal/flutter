@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:renteasy/components/colors.dart';
+import 'package:renteasy/utility/colors.dart';
 
 const TextStyle headline = TextStyle(
   fontSize: 28,

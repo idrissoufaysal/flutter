@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:renteasy/components/colors.dart';
 import 'package:renteasy/components/space.dart';
 
 import '../components/text_style.dart';

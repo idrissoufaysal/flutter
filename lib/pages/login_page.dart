@@ -1,24 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:renteasy/firstPage.dart';
 import 'package:renteasy/pages/signUp_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:renteasy/provider/authProvider/auth_provider.dart';
-import 'package:renteasy/utilises/showMessage.dart';
+import 'package:renteasy/utility/showMessage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Api/config.dart';
-import '../components/colors.dart';
+import '../utility/colors.dart';
 import '../components/space.dart';
 import '../components/text_style.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/main_botton.dart';
 import '../widgets/text_fild.dart';
-import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);

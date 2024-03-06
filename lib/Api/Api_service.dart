@@ -22,18 +22,18 @@ class ApiService {
   }
 
 
-  static T _handleResponse<T>(
-      http.Response response, T Function(dynamic) modelFromJson) {
-    print("Handling response with status code: ${response.statusCode}");
-    if (response.statusCode == 200) {
-      T model = modelFromJson(jsonDecode(response.body));
-      print("Parsed model from response: $model");
-      return model;
-    } else {
-      print("Request failed with status: ${response.statusCode}");
-      throw Exception('Request failed with status: ${response.statusCode}');
-    }
-  }
+  // static T _handleResponse<T>(
+  //     http.Response response, T Function(dynamic) modelFromJson) {
+  //   print("Handling response with status code: ${response.statusCode}");
+  //   if (response.statusCode == 200) {
+  //     T model = modelFromJson(jsonDecode(response.body));
+  //     print("Parsed model from response: $model");
+  //     return model;
+  //   } else {
+  //     print("Request failed with status: ${response.statusCode}");
+  //     throw Exception('Request failed with status: ${response.statusCode}');
+  //   }
+  // }
 
 //reponse de d'envoie
   static Future<http.Response> _postData(

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:renteasy/Api/config.dart';
-import 'package:renteasy/components/colors.dart';
+import 'package:renteasy/utility/colors.dart';
 
 import '../pages/detail_home.dart';
 import 'borderIcons.dart';

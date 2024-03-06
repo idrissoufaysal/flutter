@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:renteasy/components/colors.dart';
+import 'package:renteasy/utility/colors.dart';
 
 class MenuWidget extends StatelessWidget {
   final IconData iconImg;

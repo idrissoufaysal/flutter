@@ -1,12 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:renteasy/Api/config.dart';
 import 'package:http/http.dart' as http;
 import 'package:renteasy/pages/login_page.dart';
-import 'package:renteasy/utilises/showMessage.dart';
 import 'package:renteasy/widgets/bottom_bar.dart';
 
 

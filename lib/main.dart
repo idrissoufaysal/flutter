@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:renteasy/components/colors.dart';
+import 'package:renteasy/utility/colors.dart';
 
 import 'package:renteasy/pages/splash_page.dart';
 import 'package:renteasy/provider/authProvider/auth_provider.dart';

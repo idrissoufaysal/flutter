@@ -1,17 +1,12 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:renteasy/components/colors.dart';
+import 'package:renteasy/utility/colors.dart';
 import 'package:renteasy/components/space.dart';
 import 'package:renteasy/components/text_style.dart';
 import 'package:renteasy/pages/login_page.dart';
-import 'package:renteasy/pages/profileMenu.dart';
-import 'package:renteasy/pages/splash_page.dart';
-import 'package:renteasy/utilises/showMessage.dart';
-import 'package:user_social_profile/user_social_profile.dart';
+import 'package:renteasy/widgets/profileMenu.dart';
+import 'package:renteasy/utility/showMessage.dart';
 
-import '../Api/Api_service.dart';
 import '../Api/service_Api.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -26,7 +21,6 @@ class _ProfilePageState extends State<ProfilePage> {
 
     late String email;
 
-@override
 // void initState() {
 //     // TODO_implement initState
 //     super.initState();
@@ -34,7 +28,7 @@ class _ProfilePageState extends State<ProfilePage> {
 //     email = jwtDecodedToken['email'];
 //   }
 
-  Future<void> logout() async {
+  Future<void> logoutUser() async {
   try {
     await ApiServices.logout(); // Appel de la fonction de déconnexion de l'API Service
     
@@ -104,7 +98,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   textColor: Colors.red,
                   endIcon: false,
                   onPress: () {
-                   logout();
+                   logoutUser();
                   }),
             ],
           ),

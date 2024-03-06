@@ -1,12 +1,9 @@
 import 'package:another_carousel_pro/another_carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:renteasy/components/colors.dart';
-import 'package:renteasy/pages/paiement.dart';
-
+import 'package:renteasy/utility/colors.dart';
 import '../Api/config.dart';
 import '../N_widget/house_widget.dart';
 import '../N_widget/menu_widget.dart';
@@ -204,7 +201,7 @@ class ItemDetailScreen extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemCount: typeArray.length,
                   itemBuilder: (context, index) {
-                    final imageUrl = getRealPath(home['images'][index]['Homeimages']);
+                    //final imageUrl = getRealPath(home['images'][index]['Homeimages']);
                     return Padding(
                       padding: const EdgeInsets.only(left: 10),
                       
@@ -238,13 +235,11 @@ class ItemDetailScreen extends StatelessWidget {
               )),
 
  Mainbutton(onTap: () {
-  Navigator.push(context, MaterialPageRoute(builder: (context)=> Paiement()));
    },
- text: 'Effectuer un paiement',
+ text: 'Effectuer une reservation',
  btnColor: blueButton,
  ico: Icon(LineAwesomeIcons.facebook_messenger,
  color: white,),
- 
  )
 
             ],
